@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GateOS | Secure Access</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="toast-container"></div>
+
+    <div id="auth-screen" class="screen active">
+        <div class="auth-card">
+            <div class="logo-large">
+                <span class="material-icons-round">security</span>
+                <h1>GATE<span class="highlight">OS</span></h1>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Entrar</button>
+                <button class="tab-btn" onclick="switchTab('register')">Criar Conta</button>
+            </div>
+            
+            <form id="auth-form" onsubmit="handleAuth(event)">
+                <input type="email" id="email" placeholder="Seu E-mail" required>
+                <input type="password" id="password" placeholder="Sua Senha" required>
+                <button type="submit" id="btn-auth">ACESSAR SISTEMA</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="app-screen" class="screen">
+        <header>
+            <div class="logo">
+                <span class="material-icons-round">security</span>
+                <span>GATE<span class="highlight">OS</span></span>
+            </div>
+            <div class="header-actions">
+                <span id="user-email-display">user@email.com</span>
+                <button class="icon-btn" onclick="toggleSettings(true)">
+                    <span class="material-icons-round">settings</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="add-bar">
+                <input type="text" id="devName" placeholder="Nome (Ex: Casa)">
+                <input type="text" id="devSN" placeholder="Serial Number">
+                <button onclick="adicionarDevice()" class="btn-primary">
+                    <span class="material-icons-round">add</span>
+                </button>
+            </div>
+
+            <div class="devices-grid" id="devicesList"></div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configurações</h2>
+                <button class="close-btn" onclick="toggleSettings(false)">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>Segurança</h3>
+                    <input type="password" id="new-pass" placeholder="Nova Senha">
+                    <button onclick="mudarSenha()" class="btn-outline">Atualizar Senha</button>
+                </div>
+
+                <div class="setting-group danger-zone">
+                    <h3>Zona de Perigo</h3>
+                    <button onclick="logout()" class="btn-danger">
+                        <span class="material-icons-round">logout</span> Sair da Conta
+                    </button>
+                    <button onclick="deletarConta()" class="btn-danger-text">
+                        Excluir minha conta permanentemente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
